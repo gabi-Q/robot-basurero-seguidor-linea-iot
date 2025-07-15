@@ -1,0 +1,5 @@
+
+{
+  "name": "Smart Bin Dashboard",
+  "description": "A web dashboard to monitor the fill level of a smart trash can in real-time using Firebase and Chart.js. Data is sent by an ESP32."
+}
