@@ -16,6 +16,36 @@ El robot funciona como un contenedor estacionario que, al detectar que ha alcanz
 
 - **Retorno a la Base:** Tras ser vaciado, el sistema retorna a su estación de origen para reiniciar el ciclo de recolección.
 
+## 📊 Diccionario de Datos
+
+| Nombre                  | Tipo de Dato      | Descripción                                               | Ejemplo               |
+|------------------------|-------------------|-----------------------------------------------------------|------------------------|
+| `distancia_mm`         | Entero (uint16_t) | Distancia medida desde el sensor al residuo               | `198`                 |
+| `porcentaje`           | Float             | Nivel de llenado calculado en %                           | `62.5`                |
+| `timestamp`            | Entero (int)      | Marca de tiempo en formato UNIX                          | `1721056789`          |
+| `sensor.lidStatus`     | Booleano          | Estado de la tapa (abierta/cerrada)                      | `false`               |
+| `sensor.lidControl`    | Booleano          | Control activo de la tapa                                 | `false`               |
+| `sensor.personDetected`| Booleano          | Presencia detectada mediante sensor ultrasónico           | `true`                |
+| `history`              | Objeto            | JSON con registros históricos de distancia y % llenado    | Ver abajo             |
+
+### 🔁 Estructura Firebase (Realtime Database)
+
+```json
+"sensor": {
+  "distancia_mm": 198,
+  "porcentaje": 62.5,
+  "lidStatus": false,
+  "personDetected": true,
+  "lidControl": false,
+  "history": {
+    "-NqKjfd8320": {
+      "level": 62.5,
+      "distance": 198,
+      "timestamp": 1721056789
+    }
+  }
+}
+
 ## Autores
 
 - Pongo Calderón, René  
