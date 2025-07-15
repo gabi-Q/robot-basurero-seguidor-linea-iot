@@ -46,9 +46,11 @@ El robot funciona como un contenedor estacionario que, al detectar que ha alcanz
   }
 }
 
-## Autores
+```
 
-- Pongo Calderón, René  
-- Quispe Llanque, Gabriel Omar  
-- Argote Huancapaza, Juan Julio  
-- Romucho Sullcahuaman, Paola Celeste
+## 👥 Autores
+
+- René Pongo Calderón  
+- Gabriel Omar Quispe Llanque  
+- Juan Julio Argote Huancapaza  
+- Paola Celeste Romucho Sullcahuaman
