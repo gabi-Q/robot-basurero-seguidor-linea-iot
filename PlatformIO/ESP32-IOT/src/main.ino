@@ -25,14 +25,14 @@ const float distancia_vacio = 300.0;  // mm
 // 🌐 Función para configurar hora por NTP
 void configurarHoraNTP() {
   configTime(0, 0, "pool.ntp.org", "time.nist.gov"); // UTC
-  Serial.print("⏳ Esperando sincronización NTP...");
+  Serial.print("Esperando sincronización NTP...");
   time_t now = time(nullptr);
   while (now < 8 * 3600 * 2) {  // Esperar tiempo válido
     delay(500);
     Serial.print(".");
     now = time(nullptr);
   }
-  Serial.println("\n🕒 Hora sincronizada");
+  Serial.println("\n Hora sincronizada");
 }
 
 void setup() {
@@ -45,7 +45,7 @@ void setup() {
     Serial.print(".");
     delay(500);
   }
-  Serial.println("\n✅ Conectado a WiFi!");
+  Serial.println("\n Conectado a WiFi!");
   Serial.print("IP: "); Serial.println(WiFi.localIP());
 
   // 🕒 Configurar NTP
