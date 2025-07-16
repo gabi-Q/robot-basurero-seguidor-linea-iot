@@ -15,7 +15,13 @@ El robot funciona como un contenedor estacionario que, al detectar que ha alcanz
 - **Navegación Autónoma:** Al llenarse, el robot activa un modo de navegación guiada por sensores infrarrojos y un controlador PID para seguir una ruta hasta el punto de acopio.
 
 - **Retorno a la Base:** Tras ser vaciado, el sistema retorna a su estación de origen para reiniciar el ciclo de recolección.
+---
 
+## 🧭 Diagrama de Actividades
+
+![Diagrama de Actividades](Recursos-Diagramas/diagrama%20de%20actividades.png)
+
+---
 ## 📊 Diccionario de Datos
 
 | Nombre                  | Tipo de Dato      | Descripción                                               | Ejemplo               |
