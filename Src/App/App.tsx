@@ -61,3 +61,63 @@ const App = () => {
     });
   };
   
+ const getColorByLevel = (level) => {
+    if (level <= 49) return '#10b981'; // verde
+    if (level <= 70) return '#facc15'; // amarillo claro
+    if (level <= 95) return '#f59e0b'; // amarillo oscuro
+    return '#dc2626'; // rojo
+  };
+
+  useEffect(() => {
+    const currentRef = db.ref('/sensor/currentStatus');
+    const historyRef = db.ref('/sensor/historialLlenado');
+
+    const fetchData = () => {
+      currentRef.once('value').then((snapshot) => {
+        const data = snapshot.val() || {};
+        setFillLevel(data.porcentajeLlenado ?? 0);
+        setDistance(data.distanciaResiduos_mm ?? 0);
+        setLidStatus(data.tapaAbierta ? 'open' : 'closed');
+        setPersonDetected(data.enMovimiento ? false : !!data.personaDetectada);
+        setEnMovimiento(!!data.enMovimiento);
+      });
+
+      historyRef.once('value').then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const parsed = Object.keys(data).map((key) => {
+            const ts = data[key].timestamp;
+            return {
+              id: key,
+              level: data[key].porcentajeLlenado ?? 0,
+              timestamp: typeof ts === 'number' && ts > 1000000000 ? ts : null,
+            };
+          }).filter((entry) => entry.timestamp !== null).sort((a, b) => a.timestamp - b.timestamp);
+
+          setHistory(parsed.reverse());
+
+          const now = Math.floor(Date.now() / 1000);
+          const interval = 60; // 1 minuto
+          const points = 10;
+
+          const chartBins = [];
+          for (let i = points - 1; i >= 0; i--) {
+            const end = now - i * interval;
+            const start = end - interval;
+            const binItems = parsed.filter((h) => h.timestamp >= start && h.timestamp < end);
+            const avg = binItems.length ? binItems.reduce((a, b) => a + b.level, 0) / binItems.length : 0;
+            chartBins.push({
+              timestamp: end,
+              level: avg,
+            });
+          }
+
+          setChartData(chartBins);
+        }
+      });
+    };
+
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => clearInterval(interval);
+  }, []);
