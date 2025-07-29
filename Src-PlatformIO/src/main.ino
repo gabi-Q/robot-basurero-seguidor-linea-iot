@@ -32,3 +32,17 @@
 
 // --- Actuadores Tacho (Servo) ---
 #define SERVO_PIN 17
+
+
+// --- Sensores Carro (Seguidor de línea) ---
+#define LEFT_LINE_TRACKING   32
+#define CENTER_LINE_TRACKING 35
+#define RIGHT_LINE_TRACKING  34
+
+// --- Actuadores Carro (Motores) ---
+#define ENA_PIN 25
+#define IN1     26
+#define IN2     27
+#define IN3     14
+#define IN4     12
+#define ENB_PIN 13
