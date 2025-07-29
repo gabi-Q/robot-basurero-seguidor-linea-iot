@@ -309,6 +309,11 @@ void loop() {
       estadoActual = ESPERANDO_EN_BASE;
       break;
   }
+  if (t - tiempoAnteriorFirebase >= INTERVALO_FIREBASE_MS) {
+    tiempoAnteriorFirebase = t;
+    actualizarFirebase();
+  }
+}
 
   // =================================================================================
 // ===                   FUNCIONES DE MOVIMIENTO                                 ===
@@ -449,8 +454,71 @@ void seguirLineaPID() {
   int derivative = error - lastError;
   float omega = Kp * error + Ki * integral + Kd * derivative;
   lastError = error;
-  if (t - tiempoAnteriorFirebase >= INTERVALO_FIREBASE_MS) {
-    tiempoAnteriorFirebase = t;
-    actualizarFirebase();
+
+  float vL = BASE_LINEAR_VELOCITY - (DISTANCE_BETWEEN_WHEELS / 2.0) * omega;
+  float vR = BASE_LINEAR_VELOCITY + (DISTANCE_BETWEEN_WHEELS / 2.0) * omega;
+  
+  int pwmLeft  = constrain((int)(vL * VEL_TO_PWM_SLOPE + VEL_TO_PWM_INTERCEPT), 0, MAX_SPEED);
+  int pwmRight = constrain((int)(vR * VEL_TO_PWM_SLOPE + VEL_TO_PWM_INTERCEPT), 0, MAX_SPEED);
+
+  digitalWrite(IN1, LOW); digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW); digitalWrite(IN4, HIGH);
+  ledcWrite(ENA_CHANNEL_MOTOR, pwmLeft);
+  ledcWrite(ENB_CHANNEL_MOTOR, pwmRight);
+  delay(10);
+}
+
+bool detectaParada() {
+  return (analogRead(LEFT_LINE_TRACKING) < thresholdLeft &&
+          analogRead(CENTER_LINE_TRACKING) < thresholdCenter &&
+          analogRead(RIGHT_LINE_TRACKING) < thresholdRight);
+}
+
+void stopMotors() {
+
+  integral = 0;     // resetear_error
+  lastError = 0;
+  digitalWrite(IN1, LOW); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW); digitalWrite(IN4, LOW);
+  ledcWrite(ENA_CHANNEL_MOTOR, 0);
+  ledcWrite(ENB_CHANNEL_MOTOR, 0);
+}
+
+String calibrateSensors() {
+  int whiteLeft = 0, whiteCenter = 0, whiteRight = 0;
+  int blackLeft = 4095, blackCenter = 4095, blackRight = 4095;
+  
+  Serial.println("Iniciando calibración de sensores de línea...");
+  for (int i = 0; i < 500; i++) {
+    int l = analogRead(LEFT_LINE_TRACKING);
+    int c = analogRead(CENTER_LINE_TRACKING);
+    int r = analogRead(RIGHT_LINE_TRACKING);
+    if (l < blackLeft) blackLeft = l;
+    if (c < blackCenter) blackCenter = c;
+    if (r < blackRight) blackRight = r;
+    if (l > whiteLeft) whiteLeft = l;
+    if (c > whiteCenter) whiteCenter = c;
+    if (r > whiteRight) whiteRight = r;
+    delay(10);
   }
+  
+  thresholdLeft   = (whiteLeft + blackLeft) / 2;
+  thresholdCenter = (whiteCenter + blackCenter) / 2;
+  thresholdRight  = (whiteRight + blackRight) / 2;
+  
+  // DENTRO DE calibrateSensors()
+  isCalibrated = true;
+  Serial.println("Calibración de sensores de línea completada.");
+
+  // Si AMBOS están calibrados, inicia el modo de espera.
+  if (isCalibrated && isGyroCalibrated) {
+    estadoActual = ESPERANDO_EN_BASE;
+    Serial.println("Calibraciones completas. Entrando en modo de espera.");
+  }
+  
+  String results = "<h3>Calibración de Sensores de Línea Completo</h3>";
+  results += "<p><b>Sensor Izquierdo:</b> Negro=" + String(blackLeft) + ", Blanco=" + String(whiteLeft) + " -> <b>Umbral=" + String(thresholdLeft) + "</b></p>";
+  results += "<p><b>Sensor Central:</b> Negro=" + String(blackCenter) + ", Blanco=" + String(whiteCenter) + " -> <b>Umbral=" + String(thresholdCenter) + "</b></p>";
+  results += "<p><b>Sensor Derecho:</b> Negro=" + String(blackRight) + ", Blanco=" + String(whiteRight) + " -> <b>Umbral=" + String(thresholdRight) + "</b></p>";
+  return results;
 }
