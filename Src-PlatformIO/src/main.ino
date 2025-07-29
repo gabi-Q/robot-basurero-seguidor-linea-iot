@@ -229,7 +229,7 @@ void loop() {
       // MODIFICADO: Se comprueba el estado de ambas calibraciones
       if (porcentajeLlenado >= UMBRAL_LLENO) {
         if (isCalibrated && isGyroCalibrated) {
-          Serial.println("🗑️ ¡Contenedor lleno! Iniciando viaje a destino.");
+          Serial.println("¡Contenedor lleno! Iniciando viaje a destino.");
 
            // -- CERRAR TAPA --
           moverServoA(SERVO_CERRADO);
@@ -251,7 +251,7 @@ void loop() {
     case VIAJE_A_DESTINO:
       seguirLineaPID();
       if (detectaParada()) {
-        Serial.println("🏁 Detectada línea de destino. Iniciando secuencia de llegada.");
+        Serial.println("Detectada línea de destino. Iniciando secuencia de llegada.");
         stopMotors();
         enMovimiento = false;
         estadoActual = LLEGADA_A_DESTINO;
@@ -293,7 +293,7 @@ void loop() {
     case VIAJE_DE_REGRESO:
       seguirLineaPID();
       if (detectaParada()) {
-        Serial.println("🏠 Detectada línea de base. Iniciando secuencia final.");
+        Serial.println("Detectada línea de base. Iniciando secuencia final.");
         stopMotors();
         enMovimiento = false;
         estadoActual = LLEGADA_A_BASE;
@@ -310,6 +310,145 @@ void loop() {
       break;
   }
 
+  // =================================================================================
+// ===                   FUNCIONES DE MOVIMIENTO                                 ===
+// =================================================================================
+String calibrarGiroscopio() {
+  const int num_muestras = 2000;
+  float suma = 0;
+  int16_t gz_raw;
+
+  Serial.println("Iniciando calibración del giroscopio.");
+
+  for (int i = 0; i < num_muestras; i++) {
+    I2C_MPU.beginTransmission(MPU_ADDR);
+    I2C_MPU.write(0x47); // Puntero a GYRO_ZOUT_H
+    I2C_MPU.endTransmission(false);
+    I2C_MPU.requestFrom((uint8_t)MPU_ADDR, (size_t)2, true);
+    gz_raw = I2C_MPU.read() << 8 | I2C_MPU.read();
+    suma += (gz_raw / 131.0); 
+    delay(2);
+  }
+  gyroZ_offset = suma / num_muestras;
+  
+    // DENTRO DE calibrarGiroscopio()
+  isGyroCalibrated = true; // Activamos la bandera
+  Serial.println("Calibración de giroscopio completada.");
+
+  // Si AMBOS están calibrados, inicia el modo de espera.
+  if (isCalibrated && isGyroCalibrated) {
+    estadoActual = ESPERANDO_EN_BASE;
+    Serial.println("Ambas calibraciones completas. Entrando en modo de espera.");
+  }
+
+  String results = "<h3>Calibración de Giroscopio Completa</h3>";
+  results += "<p><b>Offset Z calculado:</b> " + String(gyroZ_offset, 4) + " °/s</p>";
+  return results;
+}
+
+void girarConIMU(float gradosObjetivo) {
+  if (!isGyroCalibrated) {
+    Serial.println("ERROR: Imposible girar. El giroscopio no está calibrado.");
+    return;
+  }
+
+  Serial.println("Iniciando giro inteligente.");
+
+  // --- Parámetros del Giro Inteligente ---
+  // El robot gira al menos este ángulo antes de buscar la línea.
+  const float gradosMinimos = 150.0; 
+  // Si el robot gira más de este ángulo, se detiene por seguridad (incluso si no encontró la línea).
+  const float gradosMaximos = 210.0; 
+  const int velocidadGiro = 100;
+
+  // --- Inicialización de variables ---
+  anguloActualZ = 0.0;
+  tiempoPrevioGiro = millis();
+  int16_t gz_raw;
+  float gyroZ_dps;
+
+  // --- Iniciar el movimiento de giro (rotación sobre su propio eje) ---
+  if (gradosObjetivo > 0) {
+    // Giro a la derecha (sentido horario)
+    digitalWrite(IN1, LOW);  digitalWrite(IN2, HIGH);
+    digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+  } else {
+    // Giro a la izquierda (sentido anti-horario)
+    digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);  digitalWrite(IN4, HIGH);
+  }
+  ledcWrite(ENA_CHANNEL_MOTOR, velocidadGiro);
+  ledcWrite(ENB_CHANNEL_MOTOR, velocidadGiro);
+
+  // --- Bucle principal del giro ---
+  // El bucle continúa mientras no hayamos alcanzado el ángulo máximo de seguridad.
+  while (abs(anguloActualZ) < gradosMaximos) {
+    unsigned long ahora = millis();
+    float dt = (ahora - tiempoPrevioGiro) / 1000.0;
+    tiempoPrevioGiro = ahora;
+
+    // 1. Leer el giroscopio y actualizar el ángulo actual
+    I2C_MPU.beginTransmission(MPU_ADDR);
+    I2C_MPU.write(0x47);
+    I2C_MPU.endTransmission(false);
+    I2C_MPU.requestFrom((uint8_t)MPU_ADDR, (size_t)2, true);
+    gz_raw = I2C_MPU.read() << 8 | I2C_MPU.read();
+    gyroZ_dps = (gz_raw / 131.0) - gyroZ_offset;
+
+    if (abs(gyroZ_dps) > 0.5) {
+      anguloActualZ += gyroZ_dps * dt;
+    }
+
+    // 2. Comprobar la condición de parada (LA LÓGICA CLAVE)
+    // Se empieza a buscar la línea después de haber girado los grados mínimos.
+    if (abs(anguloActualZ) >= gradosMinimos) {
+      // Leemos el sensor central
+      int centerSensorValue = analogRead(CENTER_LINE_TRACKING);
+
+      // Si el sensor central detecta la línea negra.
+      if (centerSensorValue < thresholdCenter) {
+        Serial.print("¡Línea re-adquirida en ");
+        Serial.print(anguloActualZ);
+        Serial.println(" grados!");
+        
+        stopMotors(); // Detiene los motores inmediatamente
+        delay(500);   // Una pequeña pausa para estabilizar
+        return;       // Salimos de la función porque hemos completado el objetivo
+      }
+    }
+  }
+
+  // --- Failsafe (Plan B) ---
+  // Si el bucle termina, significa que alcanzamos los grados máximos sin encontrar la línea.
+  stopMotors();
+  Serial.print("Giro completado por alcanzar ángulo máximo (");
+  Serial.print(anguloActualZ);
+  Serial.println(" grados) sin encontrar la línea.");
+  delay(500);
+}
+
+void seguirLineaPID() {
+  if (!enMovimiento) {
+    stopMotors();
+    return;
+  }
+  
+  int left = analogRead(LEFT_LINE_TRACKING);
+  int center = analogRead(CENTER_LINE_TRACKING);
+  int right = analogRead(RIGHT_LINE_TRACKING);
+
+  int error = 0;
+  if (left < thresholdLeft && center >= thresholdCenter && right >= thresholdRight) error = -2;
+  else if (left < thresholdLeft && center < thresholdCenter && right >= thresholdRight) error = -1;
+  else if (left >= thresholdLeft && center < thresholdCenter && right >= thresholdRight) error = 0;
+  else if (left >= thresholdLeft && center < thresholdCenter && right < thresholdRight) error = 1;
+  else if (left >= thresholdLeft && center >= thresholdCenter && right < thresholdRight) error = 2;
+  else error = lastError;
+  
+  integral += error;
+  int derivative = error - lastError;
+  float omega = Kp * error + Ki * integral + Kd * derivative;
+  lastError = error;
   if (t - tiempoAnteriorFirebase >= INTERVALO_FIREBASE_MS) {
     tiempoAnteriorFirebase = t;
     actualizarFirebase();
