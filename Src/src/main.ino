@@ -315,7 +315,7 @@ void loop() {
   }
 }
 
-  // =================================================================================
+// =================================================================================
 // ===                   FUNCIONES DE MOVIMIENTO                                 ===
 // =================================================================================
 String calibrarGiroscopio() {
@@ -476,7 +476,7 @@ bool detectaParada() {
 
 void stopMotors() {
 
-  integral = 0;     // resetear_error
+  integral = 0;
   lastError = 0;
   digitalWrite(IN1, LOW); digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW); digitalWrite(IN4, LOW);
@@ -506,7 +506,6 @@ String calibrateSensors() {
   thresholdCenter = (whiteCenter + blackCenter) / 2;
   thresholdRight  = (whiteRight + blackRight) / 2;
   
-  // DENTRO DE calibrateSensors()
   isCalibrated = true;
   Serial.println("Calibración de sensores de línea completada.");
 
@@ -521,4 +520,238 @@ String calibrateSensors() {
   results += "<p><b>Sensor Central:</b> Negro=" + String(blackCenter) + ", Blanco=" + String(whiteCenter) + " -> <b>Umbral=" + String(thresholdCenter) + "</b></p>";
   results += "<p><b>Sensor Derecho:</b> Negro=" + String(blackRight) + ", Blanco=" + String(whiteRight) + " -> <b>Umbral=" + String(thresholdRight) + "</b></p>";
   return results;
+}
+// =================================================================================
+// ===                   FUNCIONES DE SENSORES Y ACTUADORES                      ===
+// =================================================================================
+void medirNivelLlenado() {
+  uint16_t distancia_mm = sensor.readRangeContinuousMillimeters();
+  if (sensor.timeoutOccurred()) {
+    Serial.println("Timeout del VL53L0X al medir nivel.");
+    return;
+  }
+
+  porcentajeLlenado = (distancia_vacio - distancia_mm) * 100.0 / (distancia_vacio - distancia_lleno);
+  porcentajeLlenado = constrain(porcentajeLlenado, 0, 100);
+}
+
+void gestionarTapa(unsigned long t) {
+  if (t - tiempoAnteriorPersona >= INTERVALO_PERSONA_MS) {
+    tiempoAnteriorPersona = t;
+
+    float dist_persona = medirDistanciaUltrasonido();
+    bool personaCerca = (dist_persona != LECTURA_INVALIDA && dist_persona <= UMBRAL_ABRIR_CM);
+    personaDetectada = personaCerca;
+
+    if (personaCerca && porcentajeLlenado < 100.0) {
+      if (!tapaAbierta) {
+        moverServoA(SERVO_ABIERTO);
+        tapaAbierta = true;
+      }
+      // Si detectamos a alguien, reiniciamos el temporizador de gracia
+      tiempoUltimaDeteccion = t;
+    } 
+    // MODIFICAR LA CONDICIÓN DE CIERRE
+    else if (tapaAbierta && !personaCerca) {
+      // Solo cierra la tapa si ha pasado el tiempo de gracia desde la última vez que vimos a alguien
+      if (t - tiempoUltimaDeteccion >= PERIODO_GRACIA_CIERRE_MS) {
+        moverServoA(SERVO_CERRADO);
+        tapaAbierta = false;
+      }
+    }
+  }
+}
+
+float medirDistanciaUltrasonido() {
+  digitalWrite(TRIGGER_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIGGER_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGGER_PIN, LOW);
+  
+  long duracion = pulseIn(ECHO_PIN, HIGH, 25000);
+  if (duracion == 0) return LECTURA_INVALIDA;
+  float distancia = duracion * 0.0343 / 2.0;
+  if (distancia < 5.0 || distancia > 80.0) return LECTURA_INVALIDA;
+  
+  return distancia;
+}
+
+void moverServoA(int angulo) {
+  int minDuty = (int)(pow(2, PWM_RESOLUTION) * 0.025);
+  int maxDuty = (int)(pow(2, PWM_RESOLUTION) * 0.125);
+  int duty = map(angulo, 0, 180, minDuty, maxDuty);
+  ledcWrite(PWM_CHANNEL_SERVO, duty);
+}
+
+// =================================================================================
+// ===                   FUNCIONES DE RED Y SERVIDORES                           ===
+// =================================================================================
+
+void conectarWiFi() {
+  IPAddress local_IP(192, 168, 137, 26);
+  IPAddress gateway(192, 168, 137, 1);
+  IPAddress subnet(255, 255, 255, 0);
+  IPAddress primaryDNS(8, 8, 8, 8);
+  IPAddress secondaryDNS(8, 8, 4, 4);
+
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+    Serial.println("Falló la configuración de IP estática");
+  }
+
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("📡 Conectando a WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("\nWiFi conectado");
+  Serial.print("IP Estática Asignada: "); Serial.println(WiFi.localIP());
+}
+
+void configurarHoraNTP() {
+  configTime(-18000, 0, "pool.ntp.org", "time.nist.gov");
+  setenv("TZ", "PET5", 1);
+  tzset();
+}
+
+void setupFirebase() {
+  config.database_url = DATABASE_URL;
+  config.signer.tokens.legacy_token = DATABASE_SECRET;
+  Firebase.reconnectNetwork(true);
+  fbdo.setBSSLBufferSize(4096, 1024);
+  Firebase.begin(&config, &auth);
+}
+
+void actualizarFirebase() {
+  if (Firebase.ready() && WiFi.status() == WL_CONNECTED) {
+    FirebaseJson currentStatus;
+    currentStatus.add("estado", estadoAString());
+    currentStatus.add("porcentajeLlenado", porcentajeLlenado);
+    currentStatus.add("tapaAbierta", tapaAbierta);
+    currentStatus.add("personaDetectada", personaDetectada);
+    currentStatus.add("enMovimiento", enMovimiento);
+    currentStatus.add("estaLleno", lleno);
+    currentStatus.add("calibrado", isCalibrated);
+    currentStatus.add("giroCalibrado", isGyroCalibrated);
+    currentStatus.add("timestamp", time(nullptr));
+
+    if (!Firebase.setJSON(fbdo, "/sensor/currentStatus", currentStatus)) {
+      Serial.print("Error subiendo estado a Firebase: ");
+      Serial.println(fbdo.errorReason());
+    }
+
+    FirebaseJson entradaHistorial;
+    time_t timestamp = time(nullptr);
+    entradaHistorial.add("timestamp", timestamp);
+    entradaHistorial.add("porcentajeLlenado", porcentajeLlenado);
+    if (!Firebase.pushJSON(fbdo, "/sensor/historialLlenado", entradaHistorial)) {
+      Serial.print("Error guardando historial de llenado: ");
+      Serial.println(fbdo.errorReason());
+    }
+  }
+}
+
+void setupServer() {
+  server.on("/status", HTTP_GET, []() {
+    String json = "{";
+    json += "\"estadoActual\":\"" + estadoAString() + "\",";
+    json += "\"enMovimiento\":" + String(enMovimiento ? "true" : "false") + ",";
+    json += "\"lleno\":" + String(lleno ? "true" : "false") + ",";
+    json += "\"isCalibrated\":" + String(isCalibrated ? "true" : "false") + ",";
+    json += "\"isGyroCalibrated\":" + String(isGyroCalibrated ? "true" : "false") + ",";
+    json += "\"porcentajeLlenado\":" + String(porcentajeLlenado, 1) + ",";
+    json += "\"tapaAbierta\":" + String(tapaAbierta ? "true" : "false");
+    json += "}";
+    server.send(200, "application/json", json);
+  });
+
+  server.on("/calibrate", HTTP_GET, []() {
+    String calibrationResults = calibrateSensors();
+    String html = "<html><head><title>Calibracion Completa</title>";
+    html += "<style>body{font-family:sans-serif; text-align:center; padding-top: 50px; background-color:#f0f0f0;}</style></head><body>";
+    html += "<div style='text-align:left; display:inline-block; margin-top:20px; padding: 20px; background-color:white; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>" + calibrationResults + "</div>";
+    html += "<br><br><a href='/' style='text-decoration:none; color:white; background-color:#007bff; padding:10px 20px; border-radius:5px;'>Volver</a>";
+    html += "</body></html>";
+    server.send(200, "text/html", html);
+  });
+
+  //Endpoint para calibrar el giroscopio
+  server.on("/calibrategyro", HTTP_GET, []() {
+    String calibResults = calibrarGiroscopio();
+    String html = "<html><head><title>Calibracion Giroscopio</title>";
+    html += "<style>body{font-family:sans-serif; text-align:center; padding-top: 50px; background-color:#f0f0f0;}</style></head><body>";
+    html += "<div style='text-align:left; display:inline-block; margin-top:20px; padding: 20px; background-color:white; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>" + calibResults + "</div>";
+    html += "<br><br><a href='/' style='text-decoration:none; color:white; background-color:#007bff; padding:10px 20px; border-radius:5px;'>Volver</a>";
+    html += "</body></html>";
+    server.send(200, "text/html", html);
+  });
+
+  server.on("/", HTTP_GET, []() {
+    String html = "<html><head><title>Monitor Robot Autónomo</title>";
+    html += "<meta http-equiv='refresh' content='5'>";
+    html += "<style>body{font-family:sans-serif; text-align:center; background-color:#f0f0f0; margin:0; padding:20px;} h1{color:#333;} .grid-container{display:grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width:800px; margin: 20px auto;} .container{background-color:white; text-align:left; border:1px solid #ccc; padding:20px; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);} h3{color:#0056b3; border-bottom: 2px solid #eee; padding-bottom:10px; margin-top:0;} p{font-size:1.1em; margin:10px 0;} b{color:#555;} input[type=submit]{width:100%; padding:15px; font-size:1.2em; border:none; border-radius:5px; cursor:pointer;}</style>";
+    html += "</head><body>";
+    html += "<h1>Monitor del Carro-Tacho Autónomo</h1>";
+    html += "<div class='grid-container'>";
+    html += "<div class='container'>";
+    html += "<h3>Estado del Sistema</h3>";
+    html += "<p id='estadoRobot'><b>Estado General:</b> ...</p>";
+    html += "<p id='estadoContenedor'><b>Contenedor Lleno:</b> ...</p>";
+    html += "<p id='estadoCalibracion'><b>Sensores de Línea:</b> ...</p>";
+    html += "<p id='estadoGiro'><b>Giroscopio:</b> ...</p>";
+    html += "<p id='estadoMovimiento'><b>Movimiento:</b> ...</p>";
+    html += "</div>";
+    html += "<div class='container'>";
+    html += "<h3>Estado de Sensores</h3>";
+    html += "<p id='llenado'><b>Nivel de Llenado:</b> ...</p>";
+    html += "<p id='tapa'><b>Tapa:</b> ...</p>";
+    html += "</div>";
+    html += "<div class='container' style='grid-column: span 2;'>";
+    html += "<h3>Acciones </h3>";
+    html += "<form action='/calibrate' method='get' style='margin-bottom:20px;'>";
+    html += "<p><b>1. Calibrar Sensores de Línea:</b> Coloca el robot sobre la línea para que detecte blanco/negro.</p>";
+    html += "<input type='submit' value='Iniciar Calibración de Línea' style='background-color:#28a745; color:white;'>";
+    html += "</form>";
+    html += "<hr style='border: 1px solid #eee;'>";
+    html += "<form action='/calibrategyro' method='get' style='margin-top:20px;'>";
+    html += "<p><b>2. Calibrar Giroscopio:</b> Coloca el robot totalmente quieto en una superficie plana.</p>";
+    html += "<input type='submit' value='Iniciar Calibración de Giroscopio' style='background-color:#ffc107; color:black;'>";
+    html += "</form>";
+    html += "</div>";
+    html += "</div>";
+    html += "<script>";
+    html += "setInterval(function() {";
+    html += "  fetch('/status').then(response => response.json()).then(data => {";
+    html += "    document.getElementById('estadoRobot').innerHTML = '<b>Estado General:</b> ' + data.estadoActual;";
+    html += "    document.getElementById('estadoContenedor').innerHTML = '<b>Contenedor Lleno:</b> ' + (data.lleno ? 'Sí' : 'No');";
+    html += "    document.getElementById('estadoCalibracion').innerHTML = '<b>Sensores de Línea:</b> ' + (data.isCalibrated ? 'Calibrados' : 'NO Calibrados');";
+    html += "    document.getElementById('estadoGiro').innerHTML = '<b>Giroscopio:</b> ' + (data.isGyroCalibrated ? 'Calibrado' : 'NO Calibrado');";
+    html += "    document.getElementById('estadoMovimiento').innerHTML = '<b>Movimiento:</b> ' + (data.enMovimiento ? 'En Curso' : 'Detenido');";
+    html += "    document.getElementById('llenado').innerHTML = '<b>Nivel de Llenado:</b> ' + data.porcentajeLlenado + ' %';";
+    html += "    document.getElementById('tapa').innerHTML = '<b>Tapa:</b> ' + (data.tapaAbierta ? 'Abierta' : 'Cerrada');";
+    html += "  });";
+    html += "}, 2000);";
+    html += "</script>";
+    html += "</body></html>";
+    server.send(200, "text/html", html);
+  });
+
+  server.begin();
+}
+
+// =================================================================================
+// ===                   FUNCIONES AUXILIARES                                    ===
+// =================================================================================
+String estadoAString() {
+  switch (estadoActual) {
+    case CALIBRANDO: return "ESPERANDO_CALIBRACION";
+    case ESPERANDO_EN_BASE: return "ESPERANDO_EN_BASE";
+    case VIAJE_A_DESTINO: return "VIAJE_A_DESTINO";
+    case LLEGADA_A_DESTINO: return "LLEGANDO_A_DESTINO";
+    case ESPERANDO_VACIADO: return "ESPERANDO_VACIADO";
+    case VIAJE_DE_REGRESO: return "VIAJE_DE_REGRESO";
+    case LLEGADA_A_BASE: return "LLEGANDO_A_LA_BASE";
+    default: return "DESCONOCIDO";
+  }
 }
