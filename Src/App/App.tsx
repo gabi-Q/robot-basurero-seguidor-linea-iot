@@ -121,3 +121,80 @@ const App = () => {
     const interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
   }, []);
+
+    useEffect(() => {
+    if (doughnutRef.current) {
+      const chartStatus = Chart.getChart(doughnutRef.current);
+      if (chartStatus) chartStatus.destroy();
+
+      new Chart(doughnutRef.current, {
+        type: 'doughnut',
+        data: {
+          labels: ['Lleno (%)', 'Vacío (%)'],
+          datasets: [
+            {
+              data: [fillLevel, 100 - fillLevel],
+              backgroundColor: [getColorByLevel(fillLevel), '#d1d5db'],
+              borderWidth: 1,
+              cutout: '70%',
+              rotation: -90,
+              circumference: 180,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false },
+          },
+        },
+      });
+    }
+  }, [fillLevel]);
+
+
+  useEffect(() => {
+    if (historyChartRef.current && chartData.length > 0) {
+      const chartStatus = Chart.getChart(historyChartRef.current);
+      if (chartStatus) chartStatus.destroy();
+
+      new Chart(historyChartRef.current, {
+        type: 'line',
+        data: {
+          labels: chartData.map((d) => formatTimestamp(d.timestamp)),
+          datasets: [
+            {
+              label: 'Nivel de llenado (cada minuto)',
+              data: chartData.map((d) => d.level),
+              borderColor: '#2563eb',
+              backgroundColor: 'rgba(37, 99, 235, 0.1)',
+              fill: true,
+              tension: 0.3,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              pointBackgroundColor: '#1d4ed8',
+              pointBorderColor: '#fff',
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Historial de llenado del contenedor',
+              font: { size: 20, weight: 'bold' },
+              color: '#374151',
+              padding: { top: 10, bottom: 20 },
+            },
+            tooltip: {
+              mode: 'nearest',
+              intersect: false,
+              backgroundColor: '#1e40af',
+              titleColor: '#fefce8',
+              bodyColor: '#f1f5f9',
+              borderColor: '#60a5fa',
+              borderWidth: 1,
+            },
