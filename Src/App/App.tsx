@@ -198,3 +198,131 @@ const App = () => {
               borderColor: '#60a5fa',
               borderWidth: 1,
             },
+             legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                color: '#374151',
+                font: { size: 12 },
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: '#e5e7eb' },
+              title: {
+                display: true,
+                text: 'Porcentaje (%)',
+                font: { size: 14 },
+                color: '#4b5563',
+              },
+              ticks: { color: '#4b5563' },
+            },
+            x: {
+              grid: { display: false },
+              ticks: {
+                color: '#4b5563',
+                maxRotation: 50,
+                minRotation: 30,
+                callback: function (value) {
+                  return this.getLabelForValue(value).split(',')[1];
+                },
+              },
+            },
+          },
+        },
+      });
+    }
+  }, [chartData]);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 text-slate-800 font-inter overflow-hidden">
+      <div className="fixed top-4 left-4 w-24 h-24 rounded-full border-4 border-sky-500 overflow-hidden shadow-lg ring-2 ring-white z-50">
+        <img src="/avatar.jpg" alt="avatar" className="w-full h-full object-cover" />
+      </div>
+      <div className="text-center mt-2">
+        <h1 className="text-3xl font-bold text-sky-700">Dashboard-Web Carrito Basurero Seguidor de Línea</h1>
+        <p className="text-sm text-gray-600 italic">(Prototipo)</p>
+      </div>
+      <div className="max-w-6xl mx-auto grid grid-cols-3 gap-x-6 gap-y-8 p-6 pt-8 items-stretch">
+        <div className="bg-white rounded-3xl shadow-lg p-4 text-center flex flex-col items-center justify-center">
+          <h2 className="text-lg font-semibold text-gray-600 mb-2">Llenado / Distancia</h2>
+          <div className="flex flex-col items-center justify-center -mt-2 mb-0">
+            <canvas ref={doughnutRef} className="w-36 h-20 !mb-0 !mt-0" />
+            <p
+              className={`text-2xl font-extrabold mt-[-8px] ${
+                fillLevel <= 49
+                  ? 'text-green-600'
+                  : fillLevel <= 70
+                  ? 'text-yellow-500'
+                  : fillLevel <= 95
+                  ? 'text-yellow-600'
+                  : 'text-red-600'
+              }`}
+            >
+              {fillLevel.toFixed(2)}% {fillLevel >= 100 ? '⚠️' : ''}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between gap-4 h-full">
+          <div className="bg-white rounded-3xl shadow-lg p-4 flex-1 text-center flex flex-col justify-center">
+            <h2 className="text-md font-medium text-gray-600">Tapa</h2>
+            <p className="text-2xl font-semibold mt-3">
+              {enMovimiento ? 'N/A' : (lidStatus === 'open' ? '🟢 Abierta' : '🔴 Cerrada')}
+            </p>
+          </div>
+          <div className="bg-white rounded-3xl shadow-lg p-4 flex-1 text-center flex flex-col justify-center">
+            <h2 className="text-md font-medium text-gray-600">Persona</h2>
+            <p className="text-2xl font-semibold mt-3">
+              {personDetected ? '👤 Detectada' : '🚫 No Detectada'}
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-lg p-4 text-center flex items-center justify-center relative">
+          <div>
+            <h2 className="text-md font-medium text-gray-600">Carro Modo</h2>
+            <p className="text-2xl font-semibold mt-3">
+              {enMovimiento ? '🚛 Autonomo' : '🕒 Estacionario'}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-4 px-6">
+        <div className="bg-white rounded-3xl shadow-lg p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold text-indigo-600">Actividad Reciente</h2>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="h-64">
+              <canvas ref={historyChartRef}></canvas>
+            </div>
+            <div className="overflow-auto max-h-64 text-sm">
+              <table className="min-w-full border border-gray-300 shadow-sm rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-indigo-600 text-white text-sm uppercase">
+                    <th className="px-4 py-2 text-left">📅 Fecha</th>
+                    <th className="px-4 py-2 text-left">📊 Nivel (%)</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {history.map((entry, index) => (
+                    <tr key={entry.id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                      <td className="px-4 py-2 font-medium text-gray-800">{formatTimestamp(entry.timestamp)}</td>
+                      <td className="px-4 py-2 text-blue-600 font-semibold">{entry.level.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+            
