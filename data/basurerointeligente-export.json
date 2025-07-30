@@ -1,0 +1,1225 @@
+{
+  "sensor": {
+    "currentStatus": {
+      "calibrado": true,
+      "enMovimiento": false,
+      "estaLleno": false,
+      "estado": "ESPERANDO_EN_BASE",
+      "giroCalibrado": true,
+      "personaDetectada": false,
+      "porcentajeLlenado": 44.61538,
+      "tapaAbierta": false,
+      "timestamp": 1753879798
+    },
+    "historialLlenado": {
+      "-OWBh4q9X32-1okz0ifV": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753633545
+      },
+      "-OWBh4zmRVTeNsMXDy0z": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753633545
+      },
+      "-OWBh78SiSNpMoCW5YvI": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753633554
+      },
+      "-OWBh9mxRxuq2gMmYwcl": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633565
+      },
+      "-OWBhAzsogK9GnX2bLWG": {
+        "porcentajeLlenado": 7.69231,
+        "timestamp": 1753633570
+      },
+      "-OWBhCDGM3Zc7gzPMvv8": {
+        "porcentajeLlenado": 4.61538,
+        "timestamp": 1753633575
+      },
+      "-OWBhDRWTGJTGx69vaMK": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633580
+      },
+      "-OWBhEev4Ta_pSShx7hn": {
+        "porcentajeLlenado": 6.92308,
+        "timestamp": 1753633585
+      },
+      "-OWBhFtO93xbhkrbRHMx": {
+        "porcentajeLlenado": 6.92308,
+        "timestamp": 1753633590
+      },
+      "-OWBhH6z7d7iw4-XFKfr": {
+        "porcentajeLlenado": 4.61538,
+        "timestamp": 1753633595
+      },
+      "-OWBhIL8ZpdVrEgFB11X": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633600
+      },
+      "-OWBhJZdR6sR5HV1vWHW": {
+        "porcentajeLlenado": 4.61538,
+        "timestamp": 1753633605
+      },
+      "-OWBhKlKomJdrldUimSc": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633610
+      },
+      "-OWBhLzlyEOaRvTODMH3": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633615
+      },
+      "-OWBhNCPeXEvsGYUMXie": {
+        "porcentajeLlenado": 3.07692,
+        "timestamp": 1753633620
+      },
+      "-OWBhORbV6nthqhk35MX": {
+        "porcentajeLlenado": 1.53846,
+        "timestamp": 1753633625
+      },
+      "-OWBhPfNTtyWvyS0mBnt": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633630
+      },
+      "-OWBhQrnG2HcAWCnZ_Qu": {
+        "porcentajeLlenado": 4.61538,
+        "timestamp": 1753633635
+      },
+      "-OWBhS5LAVbVO08Se-1Q": {
+        "porcentajeLlenado": 6.15385,
+        "timestamp": 1753633640
+      },
+      "-OWBhTJj5C6I-rXid3qm": {
+        "porcentajeLlenado": 2.30769,
+        "timestamp": 1753633645
+      },
+      "-OWBhUYCJ_VS8faqOsPv": {
+        "porcentajeLlenado": 6.92308,
+        "timestamp": 1753633650
+      },
+      "-OWBhVlPxNKNl13ypn5b": {
+        "porcentajeLlenado": 5.38462,
+        "timestamp": 1753633655
+      },
+      "-OWBhWzNfaDRoOtDENnK": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753633660
+      },
+      "-OWBhYC9G2p0o80SL3gz": {
+        "porcentajeLlenado": 5.38462,
+        "timestamp": 1753633665
+      },
+      "-OWBhZQ-zQKFpkkOmZe8": {
+        "porcentajeLlenado": 4.61538,
+        "timestamp": 1753633670
+      },
+      "-OWBh_dO4IuRkIeWXBPt": {
+        "porcentajeLlenado": 1.53846,
+        "timestamp": 1753633675
+      },
+      "-OWBharvutr2ITnawHgE": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633680
+      },
+      "-OWBhc5F46u7eKY2t5Za": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633685
+      },
+      "-OWBhdKa_3w8VT5K9frn": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633690
+      },
+      "-OWBheY0v9aPTUTVJOyf": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633695
+      },
+      "-OWBhflQqgndg9j4V3D_": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633700
+      },
+      "-OWBhgzh35d3ZGjHJ71Z": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633705
+      },
+      "-OWBhiC1KArixdJOC4UW": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633710
+      },
+      "-OWBhjP7DWOL-SWaHKgZ": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633715
+      },
+      "-OWBhknaH8CXI8oMb1vv": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633721
+      },
+      "-OWBhlriAzEF9gMGX0Qe": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633725
+      },
+      "-OWBhn5JnlKWV3x6A4jh": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633730
+      },
+      "-OWBhoJacNDEY1hnMbJ4": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633735
+      },
+      "-OWBhpWRotp9mJkscr43": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633740
+      },
+      "-OWBhqjyU6kKGDDjPfUW": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633745
+      },
+      "-OWBhtRUc4ElfMT_Uo67": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633756
+      },
+      "-OWBhugc1rDywB4hiHPi": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633761
+      },
+      "-OWBhvtVylZTBdhDpq34": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633766
+      },
+      "-OWBhx7HX5bo2w-fUk_M": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753633771
+      },
+      "-OWBhyK4eFfg2iKimBWM": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633776
+      },
+      "-OWBhzZauYF5ghU3iZB0": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633781
+      },
+      "-OWBi-lLGNXWDPLounrP": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633786
+      },
+      "-OWBi0zjfogdVRfmLoxu": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633791
+      },
+      "-OWBi2DvFirO2epdXJLI": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633796
+      },
+      "-OWBi3RW_kt4gj39q52E": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633801
+      },
+      "-OWBi4dsc8y1CBjCPApu": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633806
+      },
+      "-OWBi5tPES79cDuoCwL7": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633811
+      },
+      "-OWBi76hye_mVNY9YQax": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633816
+      },
+      "-OWBi8L53qm7Rb8n1aHB": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633821
+      },
+      "-OWBi9Zfq2CeM__28B1Q": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633826
+      },
+      "-OWBiAlNIeCoyHODq7FT": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633831
+      },
+      "-OWBiBzo38t1AHIQ4T9s": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633836
+      },
+      "-OWBiDDC26_jbETSQpHN": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633841
+      },
+      "-OWBiEQgVhmW0kBt7sed": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633846
+      },
+      "-OWBiHQBWMFuY10fh7tb": {
+        "porcentajeLlenado": 30.76923,
+        "timestamp": 1753633859
+      },
+      "-OWBiIdcdhX9SFtmDM6n": {
+        "porcentajeLlenado": 36.15385,
+        "timestamp": 1753633864
+      },
+      "-OWBiJr7zD5i4HehWn_z": {
+        "porcentajeLlenado": 60,
+        "timestamp": 1753633868
+      },
+      "-OWBiL3yBiXcfht-TTer": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633873
+      },
+      "-OWBiMJb6O4PlWYXIHUl": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633879
+      },
+      "-OWBiNY-nNdhAeoacev5": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633884
+      },
+      "-OWBiOm0RyyWZxtPE0Fo": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633889
+      },
+      "-OWBiPy846qRBCtYxgVI": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633894
+      },
+      "-OWBiRBqC8JXmTJ4zAdu": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633899
+      },
+      "-OWBiSfNbedjPzW2mve6": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633905
+      },
+      "-OWBiTdg41BOLVZ-yel4": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633909
+      },
+      "-OWBiUsDpGsr7K_0-olO": {
+        "porcentajeLlenado": 60,
+        "timestamp": 1753633914
+      },
+      "-OWBiW5BzXgi_FAvVgM7": {
+        "porcentajeLlenado": 60.76923,
+        "timestamp": 1753633919
+      },
+      "-OWBiXHxHJBgJjJHD2dU": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633924
+      },
+      "-OWBiYWRbCozZK01oRSq": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633929
+      },
+      "-OWBiZjzkd1yD6mHzLY1": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633934
+      },
+      "-OWBi_y97P_hHyVyoPp-": {
+        "porcentajeLlenado": 56.15385,
+        "timestamp": 1753633939
+      },
+      "-OWBib9yOJZDZ4_oBXG2": {
+        "porcentajeLlenado": 59.23077,
+        "timestamp": 1753633944
+      },
+      "-OWBicPsyQpBFFLZwfdU": {
+        "porcentajeLlenado": 60,
+        "timestamp": 1753633949
+      },
+      "-OWBidbowBlpUFP6x6MR": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633954
+      },
+      "-OWBieqBmZ8Yxw9mxAQK": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633959
+      },
+      "-OWBig3cy2NPdIvD6RlR": {
+        "porcentajeLlenado": 56.92308,
+        "timestamp": 1753633964
+      },
+      "-OWBihHt1pE4qCwlsQa7": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753633969
+      },
+      "-OWBiiWUz0-6RHO0gF7i": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753633974
+      },
+      "-OWBijiUA2yEyw2katOH": {
+        "porcentajeLlenado": 55.38462,
+        "timestamp": 1753633979
+      },
+      "-OWBikwZizEuB4dTpSNJ": {
+        "porcentajeLlenado": 60,
+        "timestamp": 1753633984
+      },
+      "-OWBmkBdx8eD761FhAuV": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635029
+      },
+      "-OWBml9zhuvPx-oOOr1o": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635033
+      },
+      "-OWBmmOPJUyv3Hw7wREP": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635038
+      },
+      "-OWBmnbqEIc6-RVuvhJQ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635043
+      },
+      "-OWBmoobmssSRlWVV9eQ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635048
+      },
+      "-OWBmq23smg4Jp9ve6em": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635053
+      },
+      "-OWBmrGOBApBouE-4SC9": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635058
+      },
+      "-OWBmsUo_gsriG1ccXSJ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635063
+      },
+      "-OWBmtiakeSDcsMv7xy1": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635068
+      },
+      "-OWBmuw_Ti9JCPDsNVw9": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635073
+      },
+      "-OWBmw9xzk9NU0Bhthkr": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635078
+      },
+      "-OWBnUeHzuUVGf6kbZ1J": {
+        "porcentajeLlenado": 0,
+        "timestamp": 10
+      },
+      "-OWBnVNC1JZGQ54d-sJs": {
+        "porcentajeLlenado": 0,
+        "timestamp": 12
+      },
+      "-OWBnWapZmwoLzYgqfkE": {
+        "porcentajeLlenado": 0,
+        "timestamp": 18
+      },
+      "-OWBnXpYLTxkVcvs1GoK": {
+        "porcentajeLlenado": 0,
+        "timestamp": 23
+      },
+      "-OWBnZ2VHcm_uowWBHWS": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635242
+      },
+      "-OWBn_FktMmjOcLs25Yw": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635246
+      },
+      "-OWBnaVE1Ekpdg6kt8gH": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635252
+      },
+      "-OWBnbh0NbwSfNSDFzyU": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635256
+      },
+      "-OWBncx91fR9pmG9PizZ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635262
+      },
+      "-OWBneVMJFifhTi_84Uo": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635268
+      },
+      "-OWBnfighJIlkDHv2Zcs": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635273
+      },
+      "-OWBngx0Q2rxDObQguzM": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635278
+      },
+      "-OWBniAQZJGR8LGA1xFQ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635283
+      },
+      "-OWBnjNSRRegtlelV8I4": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635288
+      },
+      "-OWBnlh2QpiEBKs_Oj4P": {
+        "porcentajeLlenado": 37.69231,
+        "timestamp": 1753635297
+      },
+      "-OWBno8kLtqnTuJoXkOm": {
+        "porcentajeLlenado": 35.38462,
+        "timestamp": 1753635307
+      },
+      "-OWBnpPVrk_NsxQLxLqS": {
+        "porcentajeLlenado": 30,
+        "timestamp": 1753635313
+      },
+      "-OWBnqao350-tDwIBeOY": {
+        "porcentajeLlenado": 57.69231,
+        "timestamp": 1753635318
+      },
+      "-OWBnrnx2nutXcouT-7E": {
+        "porcentajeLlenado": 55.38462,
+        "timestamp": 1753635322
+      },
+      "-OWBnt2PqiWl_c8TgXeb": {
+        "porcentajeLlenado": 76.15385,
+        "timestamp": 1753635328
+      },
+      "-OWBnuGqY3zD3YrZDsZV": {
+        "porcentajeLlenado": 55.38462,
+        "timestamp": 1753635333
+      },
+      "-OWBnvVCWkciAOzll-oB": {
+        "porcentajeLlenado": 58.46154,
+        "timestamp": 1753635338
+      },
+      "-OWBnwhb8gwrfvta_eP2": {
+        "porcentajeLlenado": 65.38461,
+        "timestamp": 1753635342
+      },
+      "-OWBnxvRE7wlOzQAHQqf": {
+        "porcentajeLlenado": 66.92308,
+        "timestamp": 1753635348
+      },
+      "-OWBnz9F6Hav_yMDkxV7": {
+        "porcentajeLlenado": 65.38461,
+        "timestamp": 1753635353
+      },
+      "-OWBo-MBT5wjEgHI6CP4": {
+        "porcentajeLlenado": 63.84615,
+        "timestamp": 1753635357
+      },
+      "-OWBo0_EYUCidV_WOak7": {
+        "porcentajeLlenado": 69.23077,
+        "timestamp": 1753635362
+      },
+      "-OWBo1nc0d3BLF8jUX-j": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635367
+      },
+      "-OWBo32Q3Pj2GjZOfvK3": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635373
+      },
+      "-OWBo4FKMZzbSA-366on": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635378
+      },
+      "-OWBo5Ttu48tsfyvyYbf": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635383
+      },
+      "-OWBo6gzH4hDAk5-PrA2": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635388
+      },
+      "-OWBo7uUwSb1rOhdWyIa": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635393
+      },
+      "-OWBo98v_NnF0xuQJprB": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635398
+      },
+      "-OWBoA_-nTRczkcKEn6e": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635403
+      },
+      "-OWBoBb4MiGqKAzWsDey": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635408
+      },
+      "-OWBoCpat0Li9ubh5117": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635413
+      },
+      "-OWBoE0qRty62FesPPDj": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635418
+      },
+      "-OWBoFEt7_88jdB1Y5jW": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635423
+      },
+      "-OWBoIMfjLrOOgEhFDw-": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635435
+      },
+      "-OWBoJa3_OK3WmekcmaB": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635440
+      },
+      "-OWBoKp4hIbhX8ASZkwB": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635445
+      },
+      "-OWBoM1J1y6zSbrdLG8_": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635450
+      },
+      "-OWBoNH9ZZLZoQohW-zX": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635455
+      },
+      "-OWBoOVOuwen_e1DSNev": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635460
+      },
+      "-OWBoPh84stQK6oe7w43": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635465
+      },
+      "-OWBoQvVV4avKgc8oL0N": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635470
+      },
+      "-OWBoS8zBQJtwQnrS1Wp": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635475
+      },
+      "-OWBoTNUhZOyvWvSH91q": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635480
+      },
+      "-OWBoUckJk5-XXd4GuU9": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635486
+      },
+      "-OWBoVoB1iwH9dZCXKhy": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635490
+      },
+      "-OWBoX2eTpJyZW4_4h2q": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635495
+      },
+      "-OWBoYMivgtqPB9-PVqP": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635501
+      },
+      "-OWBoZVFnfz-z3incTiX": {
+        "porcentajeLlenado": 33.84615,
+        "timestamp": 1753635506
+      },
+      "-OWBobh2jOwD-_xAGsjJ": {
+        "porcentajeLlenado": 33.07692,
+        "timestamp": 1753635519
+      },
+      "-OWBocuf9KHu0Osz-VJB": {
+        "porcentajeLlenado": 27.69231,
+        "timestamp": 1753635524
+      },
+      "-OWBoe8wiqX316wwF7uK": {
+        "porcentajeLlenado": 30,
+        "timestamp": 1753635529
+      },
+      "-OWBofNhTOEok2tiuS_H": {
+        "porcentajeLlenado": 33.07692,
+        "timestamp": 1753635534
+      },
+      "-OWBog_GqIpHetSlYSed": {
+        "porcentajeLlenado": 30,
+        "timestamp": 1753635539
+      },
+      "-OWBph7GZr_U2n49At1c": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635803
+      },
+      "-OWBpi8tqhFcxmzN4yNd": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635807
+      },
+      "-OWBpjNYxoK_ozkgGjfm": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635812
+      },
+      "-OWBpk_H5NCgZfXsCWVT": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635817
+      },
+      "-OWBplnZ5CIZZC0NJHMV": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635822
+      },
+      "-OWBpn0uKqUO4mtEdmUA": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635827
+      },
+      "-OWBpoEQOb2i9gW-sow-": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635832
+      },
+      "-OWBpq-J9yY6L87wnhws": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635839
+      },
+      "-OWBprDiS6XlWIlUkW91": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635844
+      },
+      "-OWBptGqkDdXrcRDT11N": {
+        "porcentajeLlenado": 3.84615,
+        "timestamp": 1753635853
+      },
+      "-OWBput49RREnkWztIxA": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753635859
+      },
+      "-OWBpw7O78Q76PDiPasq": {
+        "porcentajeLlenado": 1.53846,
+        "timestamp": 1753635864
+      },
+      "-OWBpxLnisqo4BbaRNob": {
+        "porcentajeLlenado": 22.30769,
+        "timestamp": 1753635869
+      },
+      "-OWBpy_BNtd4dRtHiSje": {
+        "porcentajeLlenado": 74.61539,
+        "timestamp": 1753635874
+      },
+      "-OWBpzlx90zmz9gadyxt": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635879
+      },
+      "-OWBq01KMXQWctWtmlUm": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635884
+      },
+      "-OWBq1DlDX3tsKBieomT": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635889
+      },
+      "-OWBq2RQJ9yXSvRjY7fg": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635894
+      },
+      "-OWBq3fVkDlvXyjkwvU2": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635899
+      },
+      "-OWBq4t0L4Z5S7WsVGTv": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635904
+      },
+      "-OWBq67O2BCYJ7tlh4j4": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635909
+      },
+      "-OWBq7LjlXZJnTL3TTzg": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635914
+      },
+      "-OWBq9_JJt7rgTqVm0Jq": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635924
+      },
+      "-OWBqAmYW06SUuQMUsMl": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635929
+      },
+      "-OWBqC0t6iK8VdECZ-c3": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635934
+      },
+      "-OWBqDFL4ApzfKNwESnH": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753635939
+      },
+      "-OWBqETmxOf_Rg1c7A0e": {
+        "porcentajeLlenado": 26.92308,
+        "timestamp": 1753635944
+      },
+      "-OWBqFh5vlxc0VfTS2Gj": {
+        "porcentajeLlenado": 26.92308,
+        "timestamp": 1753635949
+      },
+      "-OWBqGtvp9xqigwBHUDx": {
+        "porcentajeLlenado": 26.92308,
+        "timestamp": 1753635954
+      },
+      "-OWBqIts3Zfik6xNS1oz": {
+        "porcentajeLlenado": 24.61539,
+        "timestamp": 1753635962
+      },
+      "-OWBqK5iWhOTaVKDvNQF": {
+        "porcentajeLlenado": 28.46154,
+        "timestamp": 1753635967
+      },
+      "-OWBr50reGkQ2pQXVUEl": {
+        "porcentajeLlenado": 0,
+        "timestamp": 6
+      },
+      "-OWBr6-IFNfw-JrJCzZh": {
+        "porcentajeLlenado": 0,
+        "timestamp": 10
+      },
+      "-OWBr7DlLuu2x3PkMIoT": {
+        "porcentajeLlenado": 0,
+        "timestamp": 15
+      },
+      "-OWBr8S8z202dtmBGaIl": {
+        "porcentajeLlenado": 0,
+        "timestamp": 20
+      },
+      "-OWBrFWydPlUlUp9c5Kq": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636210
+      },
+      "-OWBrUm2Q4k1GyOziTWQ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636273
+      },
+      "-OWBrVkZ5VKfgH81LvL1": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636277
+      },
+      "-OWBrWyxijV-d4gg1oiM": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636282
+      },
+      "-OWBrYCEV4FD008iaSp3": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636287
+      },
+      "-OWBrZP4wksQFNEswKE-": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636292
+      },
+      "-OWBr_c_gvDlxZDn1DGW": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636297
+      },
+      "-OWBrar-E_y8HtxEbgvA": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636302
+      },
+      "-OWBrc4Bx1zxKvQs67xb": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636307
+      },
+      "-OWBrdVTuBaEC6U6R8Dz": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636312
+      },
+      "-OWBreiAYoWmg3Lb-yfs": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636317
+      },
+      "-OWBrfvxQZIdhQu3D_Ml": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636322
+      },
+      "-OWBrh8KaRyPlY6K-gk4": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636327
+      },
+      "-OWBriNeNFNsY_ENcfDd": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636332
+      },
+      "-OWBrk6MIW5SH10E1sPl": {
+        "porcentajeLlenado": 49.23077,
+        "timestamp": 1753636340
+      },
+      "-OWBrlKIh98CXORYsL73": {
+        "porcentajeLlenado": 50,
+        "timestamp": 1753636345
+      },
+      "-OWBrmYpgXxj8d2jzUyA": {
+        "porcentajeLlenado": 46.92308,
+        "timestamp": 1753636350
+      },
+      "-OWBrnm6YECxybaHn6JO": {
+        "porcentajeLlenado": 49.23077,
+        "timestamp": 1753636355
+      },
+      "-OWBrp-ZNWQ7SrUL0iks": {
+        "porcentajeLlenado": 48.46154,
+        "timestamp": 1753636360
+      },
+      "-OWBrqFVnjR4tVp79eu7": {
+        "porcentajeLlenado": 75.38461,
+        "timestamp": 1753636365
+      },
+      "-OWBrrRSK3F3HsPffLBp": {
+        "porcentajeLlenado": 80,
+        "timestamp": 1753636370
+      },
+      "-OWBrse54hrszTwpGker": {
+        "porcentajeLlenado": 96.92308,
+        "timestamp": 1753636375
+      },
+      "-OWBrtss7pn_4fUUQOCl": {
+        "porcentajeLlenado": 93.84615,
+        "timestamp": 1753636380
+      },
+      "-OWBrv6FwKEyKblGNII2": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636385
+      },
+      "-OWBrwKO6Usa2RVWuQfM": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636390
+      },
+      "-OWBrxZ1WcYfEvJPY9Ht": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636395
+      },
+      "-OWBrykpQ5kQHPqlq7g8": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636400
+      },
+      "-OWBs--ZVmYKRrff2gfO": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636405
+      },
+      "-OWBs0BicDUuZTtlI18M": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636410
+      },
+      "-OWBs1XFsBTdUvol7dff": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636415
+      },
+      "-OWBs2gBFExRK_mLZwB-": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636420
+      },
+      "-OWBs4NkJvgBU_rv90zZ": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636427
+      },
+      "-OWBs5b9lVoPIAW4amuJ": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636432
+      },
+      "-OWBs6pG7d2qsfratYif": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636437
+      },
+      "-OWBs81VJENXAZ_Gyc0J": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636442
+      },
+      "-OWBs9H4OMMQwtoUxvuj": {
+        "porcentajeLlenado": 43.07692,
+        "timestamp": 1753636447
+      },
+      "-OWBsAhI8BNn2AMv1iGf": {
+        "porcentajeLlenado": 43.07692,
+        "timestamp": 1753636453
+      },
+      "-OWBsDDsu_StSVYlMJQI": {
+        "porcentajeLlenado": 40,
+        "timestamp": 1753636463
+      },
+      "-OWBsERPYwrLlry4TwTC": {
+        "porcentajeLlenado": 43.07692,
+        "timestamp": 1753636468
+      },
+      "-OWBsFg_61laNgjafEIP": {
+        "porcentajeLlenado": 43.07692,
+        "timestamp": 1753636473
+      },
+      "-OWBsGuTBy9VkOIwe_-D": {
+        "porcentajeLlenado": 44.61538,
+        "timestamp": 1753636478
+      },
+      "-OWBsI7oNwjfn82qfaOv": {
+        "porcentajeLlenado": 42.30769,
+        "timestamp": 1753636483
+      },
+      "-OWBsJM1yIgal5vAkXQe": {
+        "porcentajeLlenado": 42.30769,
+        "timestamp": 1753636488
+      },
+      "-OWBsKYzK-ueDESG6Y0I": {
+        "porcentajeLlenado": 44.61538,
+        "timestamp": 1753636493
+      },
+      "-OWBsLlE-OcHB9DJ57az": {
+        "porcentajeLlenado": 86.15385,
+        "timestamp": 1753636498
+      },
+      "-OWBsN1I6r6Q1RhCqbRN": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636503
+      },
+      "-OWBsOEiDOfHA9KnoVSz": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636508
+      },
+      "-OWBsPRbh64HJGey3LzV": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636513
+      },
+      "-OWBsQgpKZriDVBZ4VEA": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636518
+      },
+      "-OWBsRst15v32sy_Tizb": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636523
+      },
+      "-OWBsT5yW5deI5EYE727": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636528
+      },
+      "-OWBsUKETKUdcgTE-6jY": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636533
+      },
+      "-OWBsVYiXsmlPQcZpFcN": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636538
+      },
+      "-OWBsWmS5MXrQ9MXsy_p": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636543
+      },
+      "-OWBsY-ovqrPRzl5E4b-": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636548
+      },
+      "-OWBsZQeCkxMPAbU_75P": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636554
+      },
+      "-OWBs_edT_9pqFNTVWeH": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636559
+      },
+      "-OWBsatC7Pu6Q6ozsmD4": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636564
+      },
+      "-OWBsc94kPo7XH0GEv_s": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636569
+      },
+      "-OWBsdMhZMu6E6z_n6tv": {
+        "porcentajeLlenado": 41.53846,
+        "timestamp": 1753636574
+      },
+      "-OWBsedeiP7O-UFMDsqx": {
+        "porcentajeLlenado": 41.53846,
+        "timestamp": 1753636579
+      },
+      "-OWBsp-UyIvdPxgm03ux": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636622
+      },
+      "-OWBspypFoMXW_skGAsR": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636626
+      },
+      "-OWBsrCOLKMISpTnbbtn": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636631
+      },
+      "-OWBst12iposnf3SQE17": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636638
+      },
+      "-OWBsuEP95GROuPdW0QJ": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636643
+      },
+      "-OWBsvSioozEioP1E1P-": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636648
+      },
+      "-OWBsxC_OESYdobXFahS": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636655
+      },
+      "-OWBsyPezts_kUa_0BY8": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753636660
+      },
+      "-OWBt-jS6l-4K66N4A-j": {
+        "porcentajeLlenado": 43.84615,
+        "timestamp": 1753636670
+      },
+      "-OWBt0yqAKDGHL3-VOel": {
+        "porcentajeLlenado": 43.84615,
+        "timestamp": 1753636675
+      },
+      "-OWBt2AlrvsVcR1ZYCmy": {
+        "porcentajeLlenado": 44.61538,
+        "timestamp": 1753636680
+      },
+      "-OWBt3QnP_6XbORAMofv": {
+        "porcentajeLlenado": 43.84615,
+        "timestamp": 1753636685
+      },
+      "-OWBt4cUM2Y1XQ3UKKbq": {
+        "porcentajeLlenado": 53.84615,
+        "timestamp": 1753636690
+      },
+      "-OWBt5qc1CgDVJTawM0g": {
+        "porcentajeLlenado": 91.53846,
+        "timestamp": 1753636695
+      },
+      "-OWBt77oQylOUwLm2-D4": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636700
+      },
+      "-OWBt8IgxoFh7NHlvh4I": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636705
+      },
+      "-OWBt9X4JIxAddjF_g9M": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636710
+      },
+      "-OWBtAkT7Rs0jgQW0G-2": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636715
+      },
+      "-OWBtByztqMUCXpb488n": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636720
+      },
+      "-OWBtDCRv2gKpmfAFGMP": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636725
+      },
+      "-OWBtEQiUPfVLejC1iFL": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636730
+      },
+      "-OWBtHBksX80NWLL56wi": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636741
+      },
+      "-OWBtIQd0Co5vEo627BG": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636746
+      },
+      "-OWBtJeC3LLtmvGbmYB4": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636751
+      },
+      "-OWBtKuPDl6f7mBNvF6o": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636756
+      },
+      "-OWBtM4tIRSENSq6I5wi": {
+        "porcentajeLlenado": 97.69231,
+        "timestamp": 1753636761
+      },
+      "-OWBtNJjI9EIFxWl7xR-": {
+        "porcentajeLlenado": 97.69231,
+        "timestamp": 1753636766
+      },
+      "-OWBtPE2BykXvcaY-dLX": {
+        "porcentajeLlenado": 96.92308,
+        "timestamp": 1753636774
+      },
+      "-OWBtQSQRghpPM8TjBcA": {
+        "porcentajeLlenado": 94.61539,
+        "timestamp": 1753636779
+      },
+      "-OWBtRg9P3NxhZX53iqk": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636784
+      },
+      "-OWBtSsZM6AQ4ZJqaPxH": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636789
+      },
+      "-OWBtU5rFWLI6anUC7ld": {
+        "porcentajeLlenado": 100,
+        "timestamp": 1753636794
+      },
+      "-OWDvbowQMo7TSzzpiSV": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670909
+      },
+      "-OWDvcnUqUuwWWP9SdwE": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670913
+      },
+      "-OWDve0lB-bGBLXsFY--": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670918
+      },
+      "-OWDvfEJS0N0QWEFixeS": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670923
+      },
+      "-OWDvgT_YWgOc6tvu43P": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670928
+      },
+      "-OWDvhh3J9vZxlYkdlYl": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670933
+      },
+      "-OWDvivQH6UBLSsV0E8t": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670938
+      },
+      "-OWDvk7DmEy93_cpzt2r": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670943
+      },
+      "-OWDvlL_yNRSTT3QilrV": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670948
+      },
+      "-OWDvmZzBBuE61ARqYxt": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670953
+      },
+      "-OWDvnnTy_hfuowg6X2P": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670958
+      },
+      "-OWDvp0mNblLaaMAHsXz": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670963
+      },
+      "-OWDvqFArhNIBzsmZum3": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670968
+      },
+      "-OWDvrTZN9FWIvwUlCoM": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670973
+      },
+      "-OWDvsfP6yXE1DhTm_Fv": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670978
+      },
+      "-OWDvttjKMLQSZPa49jo": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670983
+      },
+      "-OWDvvTZzgkpfMo1n-ab": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670989
+      },
+      "-OWDvxQRFcBfj1guA0YW": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670997
+      },
+      "-OWDvxZwxNeHvS6NzkVf": {
+        "porcentajeLlenado": 0,
+        "timestamp": 1753670998
+      }
+    }
+  }
+}
