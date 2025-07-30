@@ -6,6 +6,16 @@ Este proyecto presenta el diseño y la construcción de un prototipo de robot m�
 
 El robot funciona como un contenedor estacionario que, al detectar que ha alcanzado su capacidad máxima, se desplaza de forma autónoma siguiendo una línea designada hasta un punto de acopio central. La principal innovación es que invierte la logística tradicional: en lugar de que el personal de limpieza revise cada contenedor, el contenedor se mueve hacia el personal cuando necesita ser vaciado.
 
+## 👥 Autores
+
+| Nombre | Usuario GitHub |
+|--------|----------------|
+| René Pongo Calderón | Rene-Pongo |
+| Gabriel Omar Quispe Llanque | gabi-Q |
+| Juan Julio Argote Huancapaza | argote314 |
+| Paola Celeste Romucho Sullcahuaman | CelesteSky16 |
+
+
 ## Funcionalidades Principales
 
 - **Apertura sin contacto:** La tapa se abre automáticamente al detectar la proximidad de una persona, usando un sensor ultrasónico.
@@ -16,7 +26,9 @@ El robot funciona como un contenedor estacionario que, al detectar que ha alcanz
 
 - **Retorno a la Base:** Tras ser vaciado, el sistema retorna a su estación de origen para reiniciar el ciclo de recolección.
 ---
+## Dashboard
 
+Puedes acceder al dashboard en [Smart Bin Dashboard](https://robot-basurero-seguidor-linea-iot.vercel.app/).
 ## 🧭 Diagrama de Actividades
 
 ![Diagrama de Actividades](Imagenes/diagrama%20de%20actividades.png)
@@ -62,9 +74,49 @@ El robot funciona como un contenedor estacionario que, al detectar que ha alcanz
 
 ```
 
-## 👥 Autores
 
-- René Pongo Calderón  
-- Gabriel Omar Quispe Llanque  
-- Juan Julio Argote Huancapaza  
-- Paola Celeste Romucho Sullcahuaman
+
+## Estructura del Proyecto
+
+```
+robot-basurero-seguidor-linea-iot/
+├── README.md
+├── docs/  # Documentación del proyecto
+│   ├── articulo.pdf
+│   ├── informe.pdf
+│   └── video_url.txt
+├── Src/  # Código fuente principal
+│   ├── App/  # Dashboard web (aplicación React)
+│   │   ├── App.tsx
+│   │   ├── constants.ts
+│   │   ├── firebaseConfig.ts
+│   │   ├── index.html
+│   │   ├── index.tsx
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── tsconfig.json
+│   │   ├── types.ts
+│   │   ├── vite.config.ts
+│   │   └── avatar.jpg
+│   ├── src/  # Código principal ESP32 (firmware Arduino)
+│   │   └── main.ino
+│   ├── platformio.ini  # Configuración PlatformIO
+│   ├── include/  # Archivos de cabecera
+│   │   └── README
+│   ├── lib/  # Librerías
+│   │   └── README
+│   ├── test/  # Pruebas
+│   │   └── README
+│   ├── .gitignore
+│   └── .vscode/  # Configuración VS Code
+│       └── extensions.json
+├── data/  # Datos y resultados
+│   └── resultados.md
+├── Imagenes/  # Imágenes y diagramas
+│   └── diagrama de actividades.png
+├── guia_git_equipo.md  # Guía de Git para el equipo
+└── requeriments.txt  # Requisitos y dependencias
+```
+
+Esta estructura organiza el código fuente en Src, documentación en docs, datos en data e imágenes en Imagenes, con descripciones de las subcarpetas principales.
+
