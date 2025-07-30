@@ -240,7 +240,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 text-slate-800 font-inter overflow-hidden">
       <div className="fixed top-4 left-4 w-24 h-24 rounded-full border-4 border-sky-500 overflow-hidden shadow-lg ring-2 ring-white z-50">
-        <img src="/avatar.jpg" alt="avatar" className="w-full h-full object-cover" />
+        <img src="https://i.ibb.co/4gtSgCHj/avatar.png" alt="avatar" className="w-full h-full object-cover" />
       </div>
       <div className="text-center mt-2">
         <h1 className="text-3xl font-bold text-sky-700">Dashboard-Web Carrito Basurero Seguidor de Línea</h1>
